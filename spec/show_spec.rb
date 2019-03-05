@@ -27,7 +27,7 @@ describe "show" do
 		end
 
 		it "accepts 1 argument of the shows array" do
-			show_count(shows)
+			expect{show_count}.to raise_error(ArgumentError)
 		end
 
 		it "returns the number of shows in the array" do
