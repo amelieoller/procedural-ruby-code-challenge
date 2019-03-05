@@ -56,10 +56,16 @@ describe "show" do
 			expect(shows).to include(home_movies)
       expect(shows.length).to be(4)
 		end
+
+		it 'calls show_count passing in the shows' do
+			allow($stdout).to receive(:puts)
+			expect(self).to receive(:show_count).with(shows).at_least(:once)
+			add_show("Breaking Bad", "Walter White", 9)
+		end
 		
 		it "prints that the show was added and uses the show_count method to print out how many shows are in the array" do
 			expect($stdout).to receive(:puts).with("Home Movies has been added to the list! You now have 3 show(s) in your list.")
-      add_show("Home Movies", "Brandon", 8)
+			add_show("Home Movies", "Brandon", 8)
     end
 	end
 
