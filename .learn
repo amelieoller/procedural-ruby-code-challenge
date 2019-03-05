@@ -1,4 +1,8 @@
 tags:
+	- variables and methods
+	- logic and conditionals
+	- arrays
+	- iteration
 languages:
   - ruby
 resources: 0
