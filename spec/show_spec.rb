@@ -44,34 +44,38 @@ describe "show" do
 			expect(defined?(add_show)).to be_truthy
 		end
 
-    it "accepts 3 arguments, the name of the show, the name of the main character, and a rating and adds that nwe show to the shows array" do
-      add_show("Breaking Bad", "Walter White", 9)
+    it "accepts 4 arguments, all shows, the name of the new show, the name of the main character, and a rating and adds that new show to the shows array" do
+      add_show(shows, "Breaking Bad", "Walter White", 9)
       expect(shows).to include(breaking_bad)
       expect(shows.length).to be(3)
     end
 
     it "adds a different show to the shows array" do
-      add_show("Home Movies", "Brandon", 8)
-			add_show("Breaking Bad", "Walter White", 9)
+      add_show(shows, "Home Movies", "Brandon", 8)
+			add_show(shows, "Breaking Bad", "Walter White", 9)
 			expect(shows).to include(home_movies)
       expect(shows.length).to be(4)
-		end
-
-		it 'calls show_count passing in the shows' do
-			allow($stdout).to receive(:puts)
-			expect(self).to receive(:show_count).with(shows).at_least(:once)
-			add_show("Breaking Bad", "Walter White", 9)
 		end
 		
 		it "prints that the show was added and uses the show_count method to print out how many shows are in the array" do
 			expect($stdout).to receive(:puts).with("Home Movies has been added to the list! You now have 3 show(s) in your list.")
-			add_show("Home Movies", "Brandon", 8)
-    end
+			add_show(shows, "Home Movies", "Brandon", 8)
+		end
+		
+		it 'calls show_count passing in the shows' do
+			allow($stdout).to receive(:puts)
+			expect(self).to receive(:show_count).with(shows).at_least(:once)
+			add_show(shows, "Breaking Bad", "Walter White", 9)
+		end
 	end
 
 	# Write a method prints all shows
 	context '#print_shows' do
-		it 'prints "You have no shows yet, please add some." if the shows array is empty' do
+		it 'defines a method print_shows' do
+			expect(defined?(add_show)).to be_truthy
+		end
+
+		it 'accepts an argument of shows and prints "You have no shows yet, please add some." if the shows array is empty' do
 			shows = []
 			expect($stdout).to receive(:puts).with("You have no shows yet, please add some.")
 			print_shows(shows)
